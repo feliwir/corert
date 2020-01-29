@@ -114,6 +114,9 @@ namespace ILCompiler
                     case "Method":
                         ProcessMethodDirective(rootProvider, containingModule, type, element);
                         break;
+                    case "AttributeImplies":
+                        ProcessAttributeImpliesDirective(rootProvider, containingModule, type, element);
+                        break;
                     default:
                         throw new NotSupportedException($"\"{element.Name.LocalName}\" is not a supported Runtime Directive.");
                 }
@@ -189,6 +192,10 @@ namespace ILCompiler
                 string parameterString = parameter.Count > 0 ? "(" + string.Join(", ", parameter) + ")" : null;
                 throw new Exception($"Could not find Method(s) {containingType}.{methodName}{parameterString} specified by a Runtime Directive.");
             }
+        }
+
+        private void ProcessAttributeImpliesDirective(IRootingServiceProvider rootProvider, ModuleDesc containingModule, TypeDesc containingType, XElement methodElement)
+        {
         }
     }
 }
